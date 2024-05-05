@@ -1,5 +1,4 @@
-Lenguaje de programacion: python
----
+# Lenguaje de programacion: python
 
 - Se crea un entorno virtual para aislar las librerias
 
@@ -9,26 +8,35 @@ Lenguaje de programacion: python
 
 `source venv/bin/activate`
 
-- Instalacion de framework: fastapi
+- Exportar lista de dependencias en archivo 'requirements.txt'
+
+`pip freeze > requirements.txt`
+
+
+
+## Librerias Generales
+-Lectura de archivos .env
+
+`pip install python-dotenv`
+
+
+## Infraestructura
+
+#### BD
+- Connector Mysql
+
+`python -m pip install PyMySQL `
+
+#### API-REST
+
+- Framework: fastapi
 
 `pip install fastapi`
 
-- Instalacion de depencias para fastApi:
+- Dependencias para fastApi:
 
 `pip install uvicorn[standard]`
 
 - Instalacion Pydantic (para validacion de datos)
 
 `python -m pip install pydantic`
-
-- Instalacion connector Mysql
-
-`python -m pip install PyMySQL `
-
-- Instalacion libreria para lectura de archivos .env
-
-`pip install python-dotenv`
-
-- Exportar lista de dependencias en archivo 'requirements.txt'
-
-`pip freeze > requirements.txt`
