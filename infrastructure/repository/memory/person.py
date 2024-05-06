@@ -2,9 +2,7 @@ from domain.repository.person import PersonRepository
 from domain.entity.base.person import PersonEntity
 from typing import List, Dict
 
-
 class PersonRepositoryMemory(PersonRepository):
-
     def __init__(self):
         self.n = 0
         self.data:Dict[int, PersonEntity] = {}

@@ -40,3 +40,7 @@
 - Instalacion Pydantic (para validacion de datos)
 
 `python -m pip install pydantic`
+
+#### Consola
+
+`python -m pip install click`
