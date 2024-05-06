@@ -1,11 +1,11 @@
 from application.person import PersonApplication
-from infrastructure.repository.memory.person import PersonRepositoryMemory
-from infrastructure.service.console_click.person import PersonServiceConsoleClick
+from infrastructure.repository.file.person import PersonRepositoryFile
+from infrastructure.service.fastapi.person import PersonServiceFastApi
 
 def main():
-    repo = PersonRepositoryMemory()
+    repo = PersonRepositoryFile()
     application = PersonApplication(repo)
-    service = PersonServiceConsoleClick(application)
+    service = PersonServiceFastApi(application)
 
 if __name__ == "__main__":
     main()
