@@ -1,45 +1,44 @@
 from domain.entity.pydantic.person import PersonEntity
 from application.person import PersonApplication
 #from infrastructure.repository.mysql import person as personDB
-import uvicorn
-from fastapi import FastAPI, Request
+from fastapi import FastAPI, APIRouter
 
-__app = None
+__app:PersonApplication = None
 
-apiServer = FastAPI()
+apiRouter = APIRouter()
 
 
-def PersonServiceFastApi(app:PersonApplication):
+def PersonServiceFastApi(app:PersonApplication, api_server:FastAPI):
     global __app
     __app = app
+    api_server.include_router(apiRouter)
 
-    uvicorn.run(apiServer, host="0.0.0.0")
-
-@apiServer.get("/person/{id}")
+@apiRouter.get("/person/{id}")
 def Get(id:int):
     r = __app.Get(id)
     return r
 
-@apiServer.get("/person/list/")
+@apiRouter.get("/person/list/")
 def List():
     return __app.List() 
 
-@apiServer.post("/person")
+@apiRouter.post("/person")
 def Create(person:PersonEntity):
     return __app.Create(person)
 
-@apiServer.put("/person")
+@apiRouter.put("/person")
 def Update(person:PersonEntity):
     return __app.Update(person)
 
-@apiServer.delete("/person")
+@apiRouter.delete("/person")
 def Delete(id:int):
     return __app.Delete(id)
 
 
 if __name__ == "__main__":
-    uvicorn.run(apiServer, host="0.0.0.0")
+    #uvicorn.run(apiRouter, host="0.0.0.0")
+    print("NOT IMPLEMENTED")
 
-@apiServer.get("/")
+@apiRouter.get("/")
 def index():
     return "Hello world"
