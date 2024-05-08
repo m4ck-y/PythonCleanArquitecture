@@ -1,9 +1,9 @@
 from application.person import PersonApplication
-from infrastructure.repository.file.person import PersonRepositoryFile
+from infrastructure.repository.memory.person import PersonRepositoryMemory
 from infrastructure.service.fastapi.person import PersonServiceFastApi
 
 def main():
-    repo = PersonRepositoryFile()
+    repo = PersonRepositoryMemory()
     application = PersonApplication(repo)
     service = PersonServiceFastApi(application)
 

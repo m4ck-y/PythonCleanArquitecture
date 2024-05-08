@@ -8,7 +8,7 @@ class PersonRepositoryMemory(PersonRepository):
         self.data:Dict[int, PersonEntity] = {}
 
     def Get(self, id:int)->PersonEntity:
-        self.data.get(id, PersonEntity())
+        return self.data.get(id, PersonEntity())
 
     def List(self)->List[PersonEntity]:
         return list(self.data.values())
@@ -18,19 +18,19 @@ class PersonRepositoryMemory(PersonRepository):
         self.data[person.id] = person
 
     def Update(self, person:PersonEntity)-> bool:
-        finded = self.data.get(person.id, None)
-        if finded == None:
+        found = self.data.get(person.id, None)
+        if found == None:
             return False
         
-        finded.age = person.age
-        finded.name = person.name
+        #TODO: Update complete object
+        found.name = person.name
         return True
         
 
     def Delete(self, id:int) -> bool:
-        finded = self.data.get(id, None)
-        if finded == None:
-            self.data
+        found = self.data.get(id, None)
+        if found == None:
+            return False
 
         del self.data[id]
         return True
