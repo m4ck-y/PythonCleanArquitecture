@@ -3,6 +3,14 @@
 #from infrastructure.repository.mysql import person as personDB
 from fastapi import FastAPI, APIRouter, Depends, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
+from jose import jwt
+from passlib.context import CryptContext
+from datetime import datetime, timedelta
+
+ALGORITHM = "HS256"
+ACCESS_TOKEN_DURATION = 1
+SECRET = "algoSecret" #SEMILLA
+crypt = CryptContext(schemes=["bcrypt"])
 
 from domain.entity.pydantic.user import UserEntity, UserDbEntity
 
@@ -36,10 +44,22 @@ async def current_user(token:str = Depends(oauth2)):
 @apiRouter.post("/login")
 async def login(form:OAuth2PasswordRequestForm = Depends()):
     
-    if not(form.username == userDB["name"] and form.password == userDB["pass"]):
+    if not(form.username == userDB["name"]):
         raise HTTPException(400, detail="Not exists")
     
-    return {"access_token":userDB["name"], "token_type": "bearer"}
+    if not(crypt.verify(form.password, userDB["pass"])):
+        raise HTTPException(400, detail="Password incorrect")
+    
+    access_token_expiration = timedelta(minutes=ACCESS_TOKEN_DURATION)
+
+    expire = datetime.utcnow() + access_token_expiration
+
+    access_token = {
+        "sub":userDB["name"],
+        "exp":expire
+    }
+    
+    return {"access_token":jwt.encode(access_token,SECRET, algorithm=ALGORITHM), "token_type": "bearer"}
 
 @apiRouter.get("/me")
 async def me(user:UserEntity = Depends(current_user)):

@@ -44,3 +44,8 @@
 #### Consola
 
 `python -m pip install click`
+
+#### Seguridad
+`python -m pip install "python-jose[cryptography]"`
+
+`python -m pip install "passlib[bcrypt]"`
