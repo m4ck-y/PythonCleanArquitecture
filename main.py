@@ -20,6 +20,9 @@ def main():
     userApp = UserApplication(userRepo)
     userService = UserServiceFastApi(userApp, apiServer)
 
+    from infrastructure.service.fastapi.admin import AdminServiceFastApi
+    auth = AdminServiceFastApi(apiServer)
+
     uvicorn.run(apiServer, host="0.0.0.0")
 
 if __name__ == "__main__":

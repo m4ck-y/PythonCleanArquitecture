@@ -12,4 +12,6 @@ class UserEntity(BaseModel):
     username: str
     email: str
     type: Optional[UserType] = 0
+
+class UserDbEntity(UserEntity):
     password: str

@@ -5,7 +5,7 @@ from fastapi import FastAPI, APIRouter
 
 __app:PersonApplication = None
 
-apiRouter = APIRouter()
+apiRouter = APIRouter(prefix="/person", tags=["person", "?"], responses={404:{"message":"Not Found"}})
 
 
 def PersonServiceFastApi(app:PersonApplication, api_server:FastAPI):
@@ -13,24 +13,24 @@ def PersonServiceFastApi(app:PersonApplication, api_server:FastAPI):
     __app = app
     api_server.include_router(apiRouter)
 
-@apiRouter.get("/person/{id}")
+@apiRouter.get("/{id}")
 def Get(id:int):
     r = __app.Get(id)
     return r
 
-@apiRouter.get("/person/list/")
+@apiRouter.get("/list/")
 def List():
     return __app.List() 
 
-@apiRouter.post("/person")
+@apiRouter.post("")
 def Create(person:PersonEntity):
     return __app.Create(person)
 
-@apiRouter.put("/person")
+@apiRouter.put("")
 def Update(person:PersonEntity):
     return __app.Update(person)
 
-@apiRouter.delete("/person")
+@apiRouter.delete("")
 def Delete(id:int):
     return __app.Delete(id)
 
