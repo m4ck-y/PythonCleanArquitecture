@@ -1,8 +1,9 @@
 from sqlalchemy import create_engine, MetaData
+from sqlalchemy.orm import sessionmaker,declarative_base
 
-engine = create_engine("mysql+pymysql://root:12345678@localhost:3306/db_name", echo=True)
-meta = MetaData()
-conn = engine.connect()
+db = create_engine("mysql+pymysql://root:12345678@localhost:3306/db_name", echo=True)
+session = sessionmaker(bind=db)
+Base = declarative_base()
 
 from .person import person #migrations
 #selectall
