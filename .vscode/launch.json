@@ -10,6 +10,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
+            "justMyCode": false,
             "args": ["create", "--n", "ghgh", "--ln", "gdfk", "--sln", "djdlf", "--p", "url.png", "--e", "algo@gmail.com", "--d", "fhd"]
         }
     ]
