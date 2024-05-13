@@ -1,0 +1,9 @@
+SESSION
+ insert 1
+ insert2
+ db.commit
+
+def getSession
+yield session
+
+depeinds(session)

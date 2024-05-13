@@ -49,3 +49,19 @@
 `python -m pip install "python-jose[cryptography]"`
 
 `python -m pip install "passlib[bcrypt]"`
+
+
+sqlalchemy
+sqlmodel
+pydantic emailvalidator
+
+pip install SQLAlchemy
+pip install sqlmodel
+
+     
+
+To install optional dependencies along with Pydantic:
+
+pip install pydantic[email]
+
+Of course, you can also install requirements manually with pip install email-validator.
