@@ -23,7 +23,7 @@ class UserTable2(Base):
     username:Mapped[str] = mapped_column(String(100))
     email:Mapped[str]
     password:Mapped[str]
-    type:Mapped[int]
+    type:Mapped[int]#NOT NULL, Optional
 
 
 
